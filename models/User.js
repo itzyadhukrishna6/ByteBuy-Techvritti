@@ -1,14 +1,13 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 
-
+// Define the schema for a user
 const userSchema = new mongoose.Schema({
-    _Id:{ type : String, required:true},
-    name: { type : String, required:true },
-    email: { type : String, required:true, unique:true },
-    imageUrl : { type : String, required:true }, 
-    cartItems: { type : Object, default:{} },
-}, { minimize: false})
+  _id: String,
+  email: String,
+  name: String,
+  imageUrl: String,
+});
 
-const User = mongoose.models.user || Mongoose.model('user',userSchema)
+// Export the model. Avoid redefining the model if it already exists (important in development).
+export default mongoose.models.User || mongoose.model("User", userSchema);
 
-export default User
